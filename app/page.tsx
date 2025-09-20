@@ -17,16 +17,46 @@ export default function DoxxedLanding() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-300 flex flex-col items-center justify-center p-4 font-mono">
-      <div className="w-full max-w-2xl mx-auto text-center space-y-8">
-        {/* Logo */}
+    <div className="min-h-screen bg-gray-300 flex flex-col items-center justify-center p-4 font-mono relative overflow-hidden">
+      <div className="bg-meme-element">🚀</div>
+      <div className="bg-meme-element">💎</div>
+      <div className="bg-meme-element">🌙</div>
+      <div className="bg-meme-element">⚡</div>
+      <div className="bg-meme-element">🔥</div>
+      <div className="bg-meme-element">💯</div>
+
+      <div className="absolute top-20 left-1/2 transform -translate-x-1/2 opacity-20 pointer-events-none z-0">
+        <Image
+          src="/doxxed-logo.png"
+          alt="Background DOXXED character"
+          width={400}
+          height={300}
+          className="degen-bg-float"
+          priority
+        />
+      </div>
+
+      <div className="w-full max-w-2xl mx-auto text-center space-y-8 relative z-10">
+        {/* Logo with hover effect */}
         <div className="mb-8">
-          <Image src="/doxxed-logo.png" alt="DOXXED logo" width={300} height={200} className="mx-auto" priority />
+          <Image
+            src="/doxxed-logo.png"
+            alt="DOXXED logo"
+            width={300}
+            height={200}
+            className="mx-auto meme-float logo-hover cursor-pointer"
+            priority
+          />
+          <div className="mt-4 space-y-2">
+            <p className="text-xs text-gray-600 italic">*actual photo of dev after rug pull*</p>
+            <p className="text-xs text-blue-600 font-bold">100% authentic degen energy ⚡</p>
+          </div>
         </div>
 
-        {/* Tagline */}
-        <div className="bg-yellow-400 text-black px-4 py-2 inline-block text-sm font-bold rounded">
-          {"the most transparent coin in crypto"}
+        <div className="relative inline-block highlighter-effect">
+          <div className="text-black text-base font-black inline-block px-1">
+            {"the most transparent coin in crypto"}
+          </div>
         </div>
 
         {/* Main heading */}
@@ -90,28 +120,34 @@ export default function DoxxedLanding() {
 
         {/* Action Buttons */}
         <div className="flex flex-wrap justify-center gap-4">
-          <Button
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded font-bold"
-            onClick={() => window.open("https://twitter.com", "_blank")}
-          >
-            twitter
-          </Button>
+          <div className="button-highlighter-blue">
+            <Button
+              className="bg-transparent text-white px-6 py-2 rounded font-bold relative z-10"
+              onClick={() => window.open("https://twitter.com", "_blank")}
+            >
+              Twiter
+            </Button>
+          </div>
 
-          <Button
-            className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded font-bold"
-            onClick={() => window.open("https://telegram.org", "_blank")}
-          >
-            telegram
-          </Button>
+          <div className="button-highlighter-lightblue">
+            <Button
+              className="bg-transparent text-white px-6 py-2 rounded font-bold relative z-10"
+              onClick={() => window.open("https://telegram.org", "_blank")}
+            >
+              Telegram
+            </Button>
+          </div>
 
-          <Button className="bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-2 rounded font-bold">
-            {"Buy $DOXXED"}
-          </Button>
+          <div className="button-highlighter-yellow">
+            <Button className="bg-transparent text-black px-6 py-2 rounded font-bold relative z-10 meme-glow">
+              {"Buy $DOXXED"}
+            </Button>
+          </div>
         </div>
 
         {/* Footer disclaimer */}
         <p className="text-gray-600 text-xs mt-8">
-          {"We memed memes, not private info. This is not financial advice."}
+          {"We reveal memes, not private info. This is not memecial advice."}
         </p>
       </div>
     </div>
