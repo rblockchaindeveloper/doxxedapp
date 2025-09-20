@@ -18,11 +18,30 @@ export default function DoxxedLanding() {
   }
 
   const playHoverSound = () => {
+    console.log("[v0] Attempting to play hover sound")
     if (audioRef.current) {
       audioRef.current.currentTime = 0
-      audioRef.current.play().catch(() => {
-        // Ignore autoplay restrictions
+      audioRef.current.play().catch((error) => {
+        console.log("[v0] Audio play failed:", error)
+        // Browsers require user interaction before playing audio
       })
+    } else {
+      console.log("[v0] Audio ref is null")
+    }
+  }
+
+  const handleLogoClick = () => {
+    console.log("[v0] Logo clicked - enabling audio")
+    if (audioRef.current) {
+      audioRef.current
+        .play()
+        .then(() => {
+          audioRef.current.pause()
+          audioRef.current.currentTime = 0
+        })
+        .catch(() => {
+          // Audio permission granted
+        })
     }
   }
 
@@ -61,8 +80,10 @@ export default function DoxxedLanding() {
             className="mx-auto meme-float logo-hover cursor-pointer"
             priority
             onMouseEnter={playHoverSound}
+            onClick={handleLogoClick}
           />
           <div className="mt-4 space-y-2">
+            <p className="text-xs text-gray-600 italic">*click me first to enable sound effects*</p>
             <p className="text-xs text-gray-600 italic">*actual photo of dev after rug pull*</p>
             <p className="text-xs text-blue-600 font-bold">100% authentic degen energy ⚡</p>
           </div>
