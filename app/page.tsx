@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -11,13 +11,27 @@ export default function DoxxedLanding() {
   const [doxxedFace, setDoxxedFace] = useState(true)
   const [doxxedDog, setDoxxedDog] = useState(true)
   const [doxxedHouse, setDoxxedHouse] = useState(true)
+  const audioRef = useRef<HTMLAudioElement>(null)
 
   const handleCopyContract = () => {
     navigator.clipboard.writeText(contractAddress)
   }
 
+  const playHoverSound = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0
+      audioRef.current.play().catch(() => {
+        // Ignore autoplay restrictions
+      })
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-300 flex flex-col items-center justify-center p-4 font-mono relative overflow-hidden">
+      <audio ref={audioRef} preload="auto">
+        <source src="/coin-sound.mp3" type="audio/mpeg" />
+      </audio>
+
       <div className="bg-meme-element">🚀</div>
       <div className="bg-meme-element">💎</div>
       <div className="bg-meme-element">🌙</div>
@@ -46,6 +60,7 @@ export default function DoxxedLanding() {
             height={200}
             className="mx-auto meme-float logo-hover cursor-pointer"
             priority
+            onMouseEnter={playHoverSound}
           />
           <div className="mt-4 space-y-2">
             <p className="text-xs text-gray-600 italic">*actual photo of dev after rug pull*</p>
@@ -123,7 +138,7 @@ export default function DoxxedLanding() {
           <div className="button-highlighter-blue">
             <Button
               className="bg-transparent text-white px-6 py-2 rounded font-bold relative z-10"
-              onClick={() => window.open("https://twitter.com", "_blank")}
+              onClick={() => window.open("https://x.com/doxxed_with_2_x", "_blank")}
             >
               Twiter
             </Button>
